@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce para Idosos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header> 
+        <div class="caixa">
+            <h1><img src="logo.png" alt="Logo E-commerce para Idosos"></h1>
+            <h2>Bem-vindo ao Melhor E-commerce para Idosos</h2>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Slider -->
+    <div class="banner-container">
+        <a href="purchase.html?produto=Aparelho%20Auditivo">
+            <img src="banner1.jpg" alt="Banner 1" class="active">
+        </a>
+        <a href="purchase.html?produto=Bengala">
+            <img src="banner2.jpg" alt="Banner 2">
+        </a>
+        <a href="purchase.html?produto=Cadeira%20de%20Rodas">
+            <img src="banner3.jpg" alt="Banner 3">
+        </a>
+    </div>
+
+    <main>
+        <section id="sobre" class="principal">
+            <h2 class="titulo-principal">Sobre o Nosso E-commerce</h2>
+            <img class="utensilios" src="about_us.jpg" alt="Imagem de idosos felizes">
+            <p>Somos dedicados a oferecer produtos que aumentam o conforto, segurança e qualidade de vida dos idosos. Aqui você encontra soluções pensadas especialmente para as suas necessidades.</p>
+        </section>
+                        <!-- Produtos aqui -->
+					 <section id="produtos" class="produtos">
+            <h3 class="titulo-principal">Nossos Produtos</h3>
+            <div class="slider-container">
+                <button class="slider-btn left-btn" onclick="scrollLeft()">❮</button>
+                <div class="conteudo-produtos" id="product-slider">
+                    <div class="produto">
+                        <img src="hearing_aid.jpg" alt="Aparelho Auditivo" class="hover-effect">
+                        <h4>Aparelho Auditivo</h4>
+                        <h4>R$ 1.200,00</h4>
+                        <p>Discreto e eficaz, ideal para melhorar a audição no dia a dia.</p>
+                        <button onclick="comprar('Aparelho Auditivo')">Comprar</button>
+                    </div>
+                    <div class="produto">
+                        <img src="walking_cane.jpg" alt="Bengala" class="hover-effect">
+                        <h4>Bengala</h4>
+                        <h4>R$ 75,00</h4>
+                        <p>Segurança e conforto em cada passo.</p>
+                        <button onclick="comprar('Bengala')">Comprar</button>
+                    </div>
+                    <div class="produto">
+                        <img src="wheelchair.jpg" alt="Cadeira de Rodas" class="hover-effect">
+                        <h4>Cadeira de Rodas</h4>
+                        <h4>R$ 850,00</h4>
+                        <p>Leve e confortável, perfeita para mobilidade.</p>
+                        <button onclick="comprar('Cadeira de Rodas')">Comprar</button>
+                    </div>
+                    <div class="produto">
+                        <img src="glasses.jpg" alt="Óculos de Leitura" class="hover-effect">
+                        <h4>Óculos de Leitura</h4>
+                        <h4>R$ 150,00</h4>
+                        <p>Design confortável, ideal para leituras prolongadas.</p>
+                        <button onclick="comprar('Óculos de Leitura')">Comprar</button>
+                    </div>
+                    <div class="produto">
+                        <img src="pill_organizer.jpg" alt="Organizador de Medicamentos" class="hover-effect">
+                        <h4>Organizador de Medicamentos</h4>
+                        <h4>R$ 45,00</h4>
+                        <p>Prático e seguro para o dia a dia.</p>
+                        <button onclick="comprar('Organizador de Medicamentos')">Comprar</button>
+                    </div>
+                </div>
+                <button class="slider-btn right-btn" onclick="scrollRight()">❯</button>
+            </div>
+        </section>
+               
+        </section>
+		
+    </main>
+
+    <footer>
+        <p>&copy; Loja Mundo Sênior - 2024</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

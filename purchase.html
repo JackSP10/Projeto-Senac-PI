@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra de Produto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">
+            <img src="logo.png" alt="Logo E-commerce para Idosos" style="max-width: 150px; display: block; margin: 0 auto;">
+        </a>
+        <h1>Finalize Sua Compra</h1>
+    </header>
+    <main class="principal">
+        <h2>Detalhes do Produto</h2>
+        <div class="produto-detalhes zoom-container">
+            <img id="produto-imagem" src="" alt="Imagem do produto">
+            <div class="zoom-lens"></div>
+        </div>
+        <p>Você está adquirindo: <span id="produto-detalhes"></span></p>
+        <form id="form-compra">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="endereco">Endereço de Entrega:</label>
+            <input type="text" id="endereco" name="endereco" required>
+            
+            <label for="pagamento">Método de Pagamento:</label>
+            <select id="pagamento" name="pagamento" required>
+                <option value="cartao">Cartão de Crédito</option>
+                <option value="boleto">Boleto Bancário</option>
+                <option value="pix">Pix</option>
+            </select>
+            
+            <button type="submit">Finalizar Compra</button>
+        </form>
+        <div id="mensagem-confirmacao" style="display: none; margin-top: 20px; text-align: center; color: green;">
+            <h3>Compra Concluída!</h3>
+            <p>Obrigado por adquirir: <span id="produto-confirmado"></span>. Sua compra foi concluída com sucesso.</p>
+        </div>
+        <a href="index.html">Voltar à página inicial</a>
+    </main>
+    <footer>
+        <p>&copy; Loja Mundo Sênior - 2024</p>
+    </footer>
+    <script>
+        // Map product names to their respective images
+        const productImages = {
+            "Aparelho Auditivo": "hearing_aid.jpg",
+            "Bengala": "walking_cane.jpg",
+            "Cadeira de Rodas": "wheelchair.jpg",
+            "Óculos de Leitura": "glasses.jpg",
+            "Organizador de Medicamentos": "pill_organizer.jpg"
+        };
+
+        // Display product details and image from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const produto = urlParams.get('produto');
+        document.getElementById('produto-detalhes').innerText = produto || "Produto não especificado";
+        const produtoImagem = productImages[produto] || "default.jpg";
+        document.getElementById('produto-imagem').src = produtoImagem;
+
+        // Zoom Effect
+        const image = document.getElementById('produto-imagem');
+        const lens = document.querySelector('.zoom-lens');
+        const zoomContainer = document.querySelector('.zoom-container');
+
+        zoomContainer.addEventListener('mousemove', (e) => {
+            const rect = image.getBoundingClientRect();
+            const x = e.clientX - rect.left - lens.offsetWidth / 2;
+            const y = e.clientY - rect.top - lens.offsetHeight / 2;
+            const maxX = rect.width - lens.offsetWidth;
+            const maxY = rect.height - lens.offsetHeight;
+
+            lens.style.left = `${Math.min(Math.max(x, 0), maxX)}px`;
+            lens.style.top = `${Math.min(Math.max(y, 0), maxY)}px`;
+            lens.style.backgroundPosition = `-${Math.min(Math.max(x, 0), maxX) * 2}px -${Math.min(Math.max(y, 0), maxY) * 2}px`;
+        });
+
+        zoomContainer.addEventListener('mouseleave', () => {
+            lens.style.display = "none";
+        });
+
+        zoomContainer.addEventListener('mouseenter', () => {
+            lens.style.display = "block";
+            lens.style.backgroundImage = `url(${image.src})`;
+            lens.style.backgroundSize = `${image.width * 2}px ${image.height * 2}px`;
+        });
+
+        // Mostrar mensagem de confirmação após envio do formulário
+        const form = document.getElementById('form-compra');
+        const mensagem = document.getElementById('mensagem-confirmacao');
+        const produtoConfirmado = document.getElementById('produto-confirmado');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Evita o envio padrão do formulário
+            mensagem.style.display = 'block';
+            produtoConfirmado.textContent = produto;
+            form.style.display = 'none'; // Esconde o formulário após a compra
+        });
+    </script>
+</body>
+</html>
